@@ -5,15 +5,20 @@ view_name = ARGV[0]
 interface = ERB.new <<-END
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface <%= view_name %>ViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
 END
 
 
 imp = ERB.new <<-END
 #import "<%= view_name %>ViewController.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface <%= view_name %>View : UIView
 
@@ -57,6 +62,8 @@ imp = ERB.new <<-END
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
 END
 
 open("#{view_name}ViewController.h", "w") { |out|
